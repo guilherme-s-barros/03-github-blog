@@ -28,14 +28,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    ${(props) => props.theme.text.component.link};
-    color: ${(props) => props.theme.color.brand.primary};
+    color: inherit;
     text-decoration: none;
-    text-transform: uppercase;
-
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
 
     &:hover {
       text-decoration: underline;

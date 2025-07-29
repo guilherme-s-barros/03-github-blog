@@ -27,6 +27,16 @@ export const AuthorCardContainer = styled.section`
       ${(props) => props.theme.text.heading.titleL};
       color: ${(props) => props.theme.color.base.title};
     }
+
+    a {
+      ${(props) => props.theme.text.component.link};
+      color: ${(props) => props.theme.color.brand.primary};
+      text-transform: uppercase;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
   }
 
   p {
