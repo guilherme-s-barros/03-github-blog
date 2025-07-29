@@ -26,4 +26,19 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: grayscale;
   }
+
+  a {
+    ${(props) => props.theme.text.component.link};
+    color: ${(props) => props.theme.color.brand.primary};
+    text-decoration: none;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `
