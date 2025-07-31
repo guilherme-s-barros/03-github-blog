@@ -2,6 +2,7 @@ import z from 'zod'
 
 const envSchema = z.object({
 	VITE_GITHUB_USERNAME: z.string().min(1),
+	VITE_GITHUB_REPO: z.string().min(1),
 })
 
 const _env = envSchema.safeParse(import.meta.env)

@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
+import { env } from '../../config/env'
 import { Actions, PostBody, PostHeader, PostInfo } from './styles'
 
 const markdown =
@@ -44,7 +45,7 @@ export function Post() {
 						</Link>
 
 						<a
-							href="https://github.com/guilherme-s-barros"
+							href={`https://github.com/${env.VITE_GITHUB_USERNAME}`}
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -58,7 +59,7 @@ export function Post() {
 					<PostInfo>
 						<div>
 							<FaGithub size={16} />
-							<span>guilherme-s-barros</span>
+							<span>{env.VITE_GITHUB_USERNAME}</span>
 						</div>
 
 						<div>

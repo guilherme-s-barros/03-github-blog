@@ -59,7 +59,7 @@ export function Posts() {
 				<PostList>
 					{posts.map((post) => {
 						return (
-							<Link to={`/posts/${post.id}`} key={post.id}>
+							<Link to={`/posts/${post.number}`} key={post.id}>
 								<article>
 									<header>
 										<h2>{post.title}</h2>

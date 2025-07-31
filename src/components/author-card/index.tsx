@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from 'react'
 import {
 	FaArrowUpRightFromSquare,
 	FaBuilding,
@@ -6,25 +7,52 @@ import {
 } from 'react-icons/fa6'
 
 import { env } from '../../config/env'
-import { useAuthor } from '../../hooks/use-author'
-import { Author, AuthorCardContainer, AuthorInfo } from './styles'
+import { fetchAuthorService } from '../../services/fetch-author'
+import { AuthorCardContainer, AuthorInfo, AuthorName } from './styles'
+
+import type { Author } from '../../interfaces/author'
+import type { FetchOptions } from '../../interfaces/http'
 
 export function AuthorCard() {
-	const author = useAuthor('author')
+	const [author, setAuthor] = useState<Author>({} as Author)
+
+	const fetchAuthor = useCallback(async (params: FetchOptions = {}) => {
+		const author = await fetchAuthorService(params)
+
+		setAuthor({
+			name: author.name,
+			avatarUrl: author.avatar_url,
+			githubUrl: author.html_url,
+			bio: author.bio,
+			company: author.company,
+			followers: author.followers,
+		})
+	}, [])
+
+	useEffect(() => {
+		const controller = new AbortController()
+		const signal = controller.signal
+
+		fetchAuthor({ signal })
+
+		return () => {
+			controller.abort()
+		}
+	}, [fetchAuthor])
 
 	return (
 		<AuthorCardContainer>
 			<img src={author.avatarUrl} alt="GitHub avatar" />
 
 			<div>
-				<Author>
+				<AuthorName>
 					<strong>{author.name}</strong>
 
 					<a href={author.githubUrl} target="_blank" rel="noopener noreferrer">
 						GitHub
 						<FaArrowUpRightFromSquare size={12} />
 					</a>
-				</Author>
+				</AuthorName>
 
 				<p>{author.bio}</p>
 

@@ -23,7 +23,7 @@ export const AuthorCardContainer = styled.section`
   }
 `
 
-export const Author = styled.div`
+export const AuthorName = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

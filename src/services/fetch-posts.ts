@@ -15,7 +15,7 @@ export async function fetchPostsService(params: FetchOptions = {}) {
 	const response = await api.get<FetchPostsAPIResponse>('/search/issues', {
 		signal: signal,
 		params: {
-			q: `${query ?? ''} repo:${env.VITE_GITHUB_USERNAME}/03-github-blog`,
+			q: `${query ?? ''} repo:${env.VITE_GITHUB_USERNAME}/${env.VITE_GITHUB_REPO}`,
 		},
 	})
 
