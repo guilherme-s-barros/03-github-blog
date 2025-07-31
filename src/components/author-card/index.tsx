@@ -5,51 +5,48 @@ import {
 	FaUserGroup,
 } from 'react-icons/fa6'
 
+import { env } from '../../config/env'
+import { usePosts } from '../../hooks/use-posts'
 import { Author, AuthorCardContainer, AuthorInfo } from './styles'
 
 export function AuthorCard() {
+	const author = usePosts('author')
+
 	return (
 		<AuthorCardContainer>
-			<img
-				src="https://github.com/guilherme-s-barros.png"
-				alt="GitHub avatar"
-			/>
+			<img src={author.avatarUrl} alt="GitHub avatar" />
 
 			<div>
 				<Author>
-					<strong>Guilherme Barros</strong>
+					<strong>{author.name}</strong>
 
-					<a
-						href="https://github.com/guilherme-s-barros"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
+					<a href={author.githubUrl} target="_blank" rel="noopener noreferrer">
 						GitHub
 						<FaArrowUpRightFromSquare size={12} />
 					</a>
 				</Author>
 
-				<p>
-					Desenvolvedor fullstack focado em React, Node.js e TypeScript.
-					Apaixonado por tecnologia, boas práticas, código limpo e aprendizado
-					contínuo.
-				</p>
+				<p>{author.bio}</p>
 
 				<AuthorInfo>
 					<div>
 						<FaGithub size={16} />
-						<span>guilherme-s-barros</span>
+						<span>{env.VITE_GITHUB_USERNAME}</span>
 					</div>
 
-					<div>
-						<FaBuilding size={16} />
-						<span>Rocketseat</span>
-					</div>
+					{author.company && (
+						<div>
+							<FaBuilding size={16} />
+							<span>{author.company}</span>
+						</div>
+					)}
 
-					<div>
-						<FaUserGroup size={16} />
-						<span>32 seguidores</span>
-					</div>
+					{author.followers > 0 && (
+						<div>
+							<FaUserGroup size={16} />
+							<span>{author.followers} seguidores</span>
+						</div>
+					)}
 				</AuthorInfo>
 			</div>
 		</AuthorCardContainer>
