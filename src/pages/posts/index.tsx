@@ -1,20 +1,41 @@
 import dayjs from 'dayjs'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Markdown from 'react-markdown'
 import { Link } from 'react-router-dom'
 
 import { AuthorCard } from '../../components/author-card'
 import { SearchForm } from '../../components/search-form'
-import { usePosts } from '../../hooks/use-posts'
+import { fetchPostsService } from '../../services/fetch-posts'
 import { PostCount, PostList, PostsContainer } from './styles'
 
+import type { FetchOptions } from '../../interfaces/http'
+import type { Post } from '../../interfaces/post'
+
 export function Posts() {
-	const posts = usePosts('posts')
-	const totalPosts = usePosts('totalPosts')
+	const [posts, setPosts] = useState<Post[]>([])
+	const [totalPosts, setTotalPosts] = useState(0)
+
+	const fetchPosts = useCallback(async (params: FetchOptions = {}) => {
+		const data = await fetchPostsService(params)
+
+		setPosts(data.items)
+		setTotalPosts(data.total_count)
+	}, [])
 
 	const excerptBody = useCallback((body: string) => {
 		return body.split('\n\n').at(0)
 	}, [])
+
+	useEffect(() => {
+		const controller = new AbortController()
+		const signal = controller.signal
+
+		fetchPosts({ signal })
+
+		return () => {
+			controller.abort()
+		}
+	}, [fetchPosts])
 
 	function formatDate(date: Date) {
 		return new Intl.DateTimeFormat('pt-br', {
@@ -33,7 +54,7 @@ export function Posts() {
 					<span>{totalPosts} publicações</span>
 				</PostCount>
 
-				<SearchForm />
+				<SearchForm onSearch={fetchPosts} />
 
 				<PostList>
 					{posts.map((post) => {

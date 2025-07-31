@@ -1,7 +1,7 @@
 import { env } from '../config/env'
 import { api } from '../lib/api'
 
-import type { FetchAuthorParams } from '../contexts/posts/context'
+import type { FetchOptions } from '../interfaces/http'
 
 interface FetchAuthorAPIResponse {
 	name: string
@@ -12,7 +12,7 @@ interface FetchAuthorAPIResponse {
 	followers: number
 }
 
-export async function fetchAuthorService(params: FetchAuthorParams = {}) {
+export async function fetchAuthorService(params: FetchOptions = {}) {
 	const { signal } = params
 
 	const response = await api.get<FetchAuthorAPIResponse>(

@@ -1,14 +1,15 @@
 import { env } from '../config/env'
 import { api } from '../lib/api'
 
-import type { FetchPostsParams, Post } from '../contexts/posts/context'
+import type { FetchOptions } from '../interfaces/http'
+import type { Post } from '../interfaces/post'
 
 interface FetchPostsAPIResponse {
 	items: Post[]
 	total_count: number
 }
 
-export async function fetchPostsService(params: FetchPostsParams = {}) {
+export async function fetchPostsService(params: FetchOptions = {}) {
 	const { query, signal } = params
 
 	const response = await api.get<FetchPostsAPIResponse>('/search/issues', {

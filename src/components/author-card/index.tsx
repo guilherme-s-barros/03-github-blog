@@ -6,11 +6,11 @@ import {
 } from 'react-icons/fa6'
 
 import { env } from '../../config/env'
-import { usePosts } from '../../hooks/use-posts'
+import { useAuthor } from '../../hooks/use-author'
 import { Author, AuthorCardContainer, AuthorInfo } from './styles'
 
 export function AuthorCard() {
-	const author = usePosts('author')
+	const author = useAuthor('author')
 
 	return (
 		<AuthorCardContainer>
