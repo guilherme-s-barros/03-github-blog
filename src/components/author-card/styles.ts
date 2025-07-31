@@ -18,38 +18,38 @@ export const AuthorCardContainer = styled.section`
     border-radius: 0.5rem;
   }
 
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    strong {
-      ${(props) => props.theme.text.heading.titleL};
-      color: ${(props) => props.theme.color.base.title};
-    }
-
-    a {
-      ${(props) => props.theme.text.component.link};
-      color: ${(props) => props.theme.color.brand.primary};
-      text-transform: uppercase;
-
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-  }
-
   p {
     margin: 0.5rem 0 1.5rem;
   }
 `
 
-export const Info = styled.footer`
+export const Author = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  strong {
+    ${(props) => props.theme.text.heading.titleL};
+    color: ${(props) => props.theme.color.base.title};
+  }
+
+  a {
+    ${(props) => props.theme.text.component.link};
+    color: ${(props) => props.theme.color.brand.primary};
+    text-transform: uppercase;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+`
+
+export const AuthorInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5rem;
 
-  > div {
+  div {
     display: flex;
     align-items: center;
     gap: 0.5rem;

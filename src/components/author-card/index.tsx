@@ -5,7 +5,7 @@ import {
 	FaUserGroup,
 } from 'react-icons/fa6'
 
-import { AuthorCardContainer, Info } from './styles'
+import { Author, AuthorCardContainer, AuthorInfo } from './styles'
 
 export function AuthorCard() {
 	return (
@@ -16,7 +16,7 @@ export function AuthorCard() {
 			/>
 
 			<div>
-				<header>
+				<Author>
 					<strong>Guilherme Barros</strong>
 
 					<a
@@ -27,7 +27,7 @@ export function AuthorCard() {
 						GitHub
 						<FaArrowUpRightFromSquare size={12} />
 					</a>
-				</header>
+				</Author>
 
 				<p>
 					Desenvolvedor fullstack focado em React, Node.js e TypeScript.
@@ -35,7 +35,7 @@ export function AuthorCard() {
 					contínuo.
 				</p>
 
-				<Info>
+				<AuthorInfo>
 					<div>
 						<FaGithub size={16} />
 						<span>guilherme-s-barros</span>
@@ -50,7 +50,7 @@ export function AuthorCard() {
 						<FaUserGroup size={16} />
 						<span>32 seguidores</span>
 					</div>
-				</Info>
+				</AuthorInfo>
 			</div>
 		</AuthorCardContainer>
 	)
