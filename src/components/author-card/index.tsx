@@ -16,17 +16,10 @@ import type { FetchOptions } from '../../interfaces/http'
 export function AuthorCard() {
 	const [author, setAuthor] = useState<Author>({} as Author)
 
-	const fetchAuthor = useCallback(async (params: FetchOptions = {}) => {
-		const author = await fetchAuthorService(params)
+	const fetchAuthor = useCallback(async (options: FetchOptions = {}) => {
+		const author = await fetchAuthorService(options)
 
-		setAuthor({
-			name: author.name,
-			avatarUrl: author.avatar_url,
-			githubUrl: author.html_url,
-			bio: author.bio,
-			company: author.company,
-			followers: author.followers,
-		})
+		setAuthor(author)
 	}, [])
 
 	useEffect(() => {
@@ -42,13 +35,13 @@ export function AuthorCard() {
 
 	return (
 		<AuthorCardContainer>
-			<img src={author.avatarUrl} alt="GitHub avatar" />
+			<img src={author.avatar_url} alt="GitHub avatar" />
 
 			<div>
 				<AuthorName>
 					<strong>{author.name}</strong>
 
-					<a href={author.githubUrl} target="_blank" rel="noopener noreferrer">
+					<a href={author.html_url} target="_blank" rel="noopener noreferrer">
 						GitHub
 						<FaArrowUpRightFromSquare size={12} />
 					</a>

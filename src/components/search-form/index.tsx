@@ -13,7 +13,7 @@ const searchFormSchema = z.object({
 type SearchFormInputs = z.infer<typeof searchFormSchema>
 
 interface SearchFormProps {
-	onSearch(params: FetchOptions): Promise<void>
+	onSearch(options: FetchOptions): Promise<void>
 }
 
 export function SearchForm({ onSearch }: SearchFormProps) {

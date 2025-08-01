@@ -9,8 +9,8 @@ interface FetchPostsAPIResponse {
 	total_count: number
 }
 
-export async function fetchPostsService(params: FetchOptions = {}) {
-	const { query, signal } = params
+export async function fetchPostsService(options: FetchOptions = {}) {
+	const { query, signal } = options
 
 	const response = await api.get<FetchPostsAPIResponse>('/search/issues', {
 		signal: signal,

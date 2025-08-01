@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { AuthorCard } from '../../components/author-card'
 import { SearchForm } from '../../components/search-form'
 import { fetchPostsService } from '../../services/fetch-posts'
+import { format, timeRelativeToNow } from '../../utils/date'
 import { PostCount, PostList, PostsContainer } from './styles'
 
 import type { FetchOptions } from '../../interfaces/http'
@@ -15,8 +16,8 @@ export function Posts() {
 	const [posts, setPosts] = useState<Post[]>([])
 	const [totalPosts, setTotalPosts] = useState(0)
 
-	const fetchPosts = useCallback(async (params: FetchOptions = {}) => {
-		const data = await fetchPostsService(params)
+	const fetchPosts = useCallback(async (options: FetchOptions = {}) => {
+		const data = await fetchPostsService(options)
 
 		setPosts(data.items)
 		setTotalPosts(data.total_count)
@@ -36,13 +37,6 @@ export function Posts() {
 			controller.abort()
 		}
 	}, [fetchPosts])
-
-	function formatDate(date: Date) {
-		return new Intl.DateTimeFormat('pt-br', {
-			dateStyle: 'short',
-			timeStyle: 'short',
-		}).format(date)
-	}
 
 	return (
 		<PostsContainer>
@@ -66,9 +60,9 @@ export function Posts() {
 
 										<time
 											dateTime={post.created_at}
-											title={formatDate(new Date(post.created_at))}
+											title={format(post.created_at)}
 										>
-											{dayjs(post.created_at).fromNow()}
+											{timeRelativeToNow(post.created_at)}
 										</time>
 									</header>
 

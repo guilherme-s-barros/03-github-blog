@@ -27,7 +27,7 @@ export function Router() {
 				<Routes>
 					<Route path="/" Component={DefaultLayout}>
 						<Route index Component={Posts} />
-						<Route path="/posts/:postId" Component={Post} />
+						<Route path="/posts/:postNumber" Component={Post} />
 					</Route>
 				</Routes>
 			</Wrapper>

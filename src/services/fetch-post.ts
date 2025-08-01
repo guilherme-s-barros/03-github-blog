@@ -2,22 +2,15 @@ import { env } from '../config/env'
 import { api } from '../lib/api'
 
 import type { FetchOptions } from '../interfaces/http'
-
-interface FetchPostAPIResponse {
-	title: string
-	html_url: string
-	created_at: string
-	comments: number
-	body: string
-}
+import type { Post } from '../interfaces/post'
 
 export async function fetchPostService(
 	postNumber: number,
-	params: FetchOptions = {},
+	options: FetchOptions = {},
 ) {
-	const { signal } = params
+	const { signal } = options
 
-	const response = await api.get<FetchPostAPIResponse>(
+	const response = await api.get<Post>(
 		`repos/${env.VITE_GITHUB_USERNAME}/${env.VITE_GITHUB_REPO}/issues/${postNumber}`,
 		{
 			signal: signal,

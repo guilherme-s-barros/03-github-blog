@@ -55,6 +55,7 @@ export const PostBody = styled.div`
 
   img {
     width: 100%;
+    border-radius: 0.5rem;
   }
 
   h2 {
@@ -73,7 +74,11 @@ export const PostBody = styled.div`
   pre + p,
   pre + pre,
   p + ul,
-  ul + p {
+  p + ol,
+  p + dl,
+  ul + p,
+  ol + p,
+  dl + p {
     margin-top: 1rem;
   }
 
@@ -84,10 +89,10 @@ export const PostBody = styled.div`
 
   ul {
     margin-left: 1rem;
+  }
 
-    li + li {
-      margin-top: 0.5rem;
-    }
+  li + li {
+    margin-top: 0.5rem;
   }
 
   a {
