@@ -6,7 +6,7 @@ Projeto desenvolvido como parte do módulo **HTTP e performance** do curso Ignit
 
 O desafio consistia em construir um blog pessoal fictício, a partir de um layout no Figma. É utilizado a API do GitHub para obter issues de um repositório, e usá-la como posts.
 
-### Preview
+### 📷 Preview
 
 ![preview-01](/.github/preview-01.png)
 ![preview-02](/.github/preview-02.png)
@@ -27,7 +27,7 @@ O desafio consistia em construir um blog pessoal fictício, a partir de um layou
 - **React Markdown** - conversão de markdown em HTML
 - **React Syntax Highlighter** - destaque de blocos de código
 
-## Como rodar a aplicação
+## 🖥️ Como rodar a aplicação
 
 Antes de tudo, crie um arquivo .env na raiz do projeto, e adicione as seguintes variáveis:
 
