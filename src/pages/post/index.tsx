@@ -6,11 +6,10 @@ import {
 	FaComment,
 	FaGithub,
 } from 'react-icons/fa6'
-import Markdown, { type Components } from 'react-markdown'
+import Markdown from 'react-markdown'
 import { Link, useParams } from 'react-router-dom'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
+import { mdComponents } from '../../components/markdown'
 import { env } from '../../config/env'
 import { fetchPostService } from '../../services/fetch-post'
 import { format, timeRelativeToNow } from '../../utils/date'
@@ -43,32 +42,6 @@ export function Post() {
 			controller.abort()
 		}
 	}, [fetchPost])
-
-	const components: Components = {
-		code(props) {
-			const { children, className } = props
-			const match = /language-(\w+)/.exec(className || '')
-
-			return match ? (
-				<SyntaxHighlighter PreTag="div" language={match[1]} style={nord}>
-					{String(children).replace(/\n$/, '')}
-				</SyntaxHighlighter>
-			) : (
-				<code className={className} {...props}>
-					{children}
-				</code>
-			)
-		},
-		a(props) {
-			const { href, children } = props
-
-			return (
-				<a href={href} target="_blank" rel="noopener noreferrer" {...props}>
-					{children}
-				</a>
-			)
-		},
-	}
 
 	return (
 		<main>
@@ -111,7 +84,7 @@ export function Post() {
 				</PostHeader>
 
 				<PostBody>
-					<Markdown components={components} disallowedElements={['hr']}>
+					<Markdown components={mdComponents} disallowedElements={['hr']}>
 						{post.body}
 					</Markdown>
 				</PostBody>
